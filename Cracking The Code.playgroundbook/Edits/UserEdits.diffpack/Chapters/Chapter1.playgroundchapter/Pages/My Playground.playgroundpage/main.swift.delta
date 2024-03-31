@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>
+/**
+ 1.1 Determine if a string has all unique characters. What if you can't use additional data structures?
+ */
+extension String { 
+   func hasUniqueCharacters() -&gt; Bool { 
+        // collect repeated elements 
+        let repeatedElements = sorted().successiveElements(where: { $0 == $1 })
+        // return bool based on the presence of repeated elements 
+        return repeatedElements == nil ? true : false 
+    }
+}
+
+public extension Collection { 
+    /*
+ 
+     */
+    func successiveElements(where predicate: (_ previousElement: Iterator.Element, _ element: Iterator.Element) -&gt; Bool) -&gt; (Index, Iterator.Element, Index, Iterator.Element)? { 
+        for (left, right) in indexElementPairs() { 
+            guard predicate(left.1, right.1) else { continue }
+            return (left.0, left.1, right.0, right.1)
+        }
+        return nil 
+    }
+    
+    func indexElementPairs() -&gt; Zip2Sequence&lt;Zip2Sequence&lt;Indices, Self&gt;.Iterator, Zip2Sequence&lt;Indices, Self&gt;.Iterator&gt; { 
+        let left = zip(indices, self).makeIterator()
+        var right = left 
+        let _ = right.next()
+        return zip(left, right)
+    }
+}
+
+extension Zip2Sequence.Iterator: Sequence { 
+    public func makeIterator() -&gt; Zip2Sequence&lt;Sequence1, Sequence2&gt;.Iterator {
+        return self 
+        }
+}
+
+let unique = "thiscanbegod"
+let repetitive = "thiswillbeawesome"
+
+print("Unique has unique characters = \(unique.hasUniqueCharacters())")
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 1430}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

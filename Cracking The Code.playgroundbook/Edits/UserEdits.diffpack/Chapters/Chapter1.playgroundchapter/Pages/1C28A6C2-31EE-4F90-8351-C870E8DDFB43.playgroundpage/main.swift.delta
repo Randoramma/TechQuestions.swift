@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+//Given an image represented by NxN matrix, where each pixel in the images 4 bites, write a method to rotate the image by 90°. Can you do this in place?
+// matrix [i][j]
+func rotateMatrixInPlace(_ matrix: inout [[Int]]) { 
+    
+    let n: Int = matrix.count 
+    
+    for i in 0..&lt;n { // for each element in rows 
+        for j in i..&lt;n { // for each column in the row
+            let temp = matrix[i][j] // grab the initial state
+            matrix[i][j] = matrix[j][i] // transpose 
+            matrix[j][i] = temp 
+        }
+    }
+    for i in 0..&lt;n { 
+        matrix[i].reverse() 
+    }
+}
+
+var myMatrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+print("#1 \(myMatrix)")
+rotateMatrixInPlace(&amp;myMatrix)
+
+func rotateMatrixInPlace2(_ matrix: inout [[Int]]) { 
+    // create var to track the number of sides in a matrix 
+    let n: Int = matrix.count 
+    // for each row&lt;element&gt; up to the count of each side.. 
+    for i in 0..&lt;n { 
+        // for each column remaining the current row up to the total.. 
+        for j in i..&lt;n { 
+            // create a temp row of the initial state 
+            let temp = matrix[i][j]
+            // swap the elements diagonally first ij -&gt; ji 
+            matrix[i][j] = matrix[j][i]
+            // swap the elements diagonally second ji -&gt; ij (temp)  
+            matrix[j][i] = temp
+        }
+        
+        // this creates a flipped matrix across the diagonal.  In order to perform the swap 90º you must reverse the order of each row.  
+    }
+    for i in 0..&lt;n { 
+        matrix[i].reverse()
+    }
+}
+print("#2 \(myMatrix)")
+rotateMatrixInPlace2(&amp;myMatrix)
+print("#3 \(myMatrix)")
+rotateMatrixInPlace2(&amp;myMatrix)
+print("#4 \(myMatrix)")
+rotateMatrixInPlace2(&amp;myMatrix)
+print("#5 \(myMatrix)")
+
+
+func rotateMatrixInPlace3(_ matrix: inout [[Int]]) {
+    // create var to track row size/ count of rows
+    let n = matrix.count 
+    
+    // track the rows to rotate 
+    for i in 0..&lt;n { 
+        // track the columns remaining after row rotation 
+        for j in i..&lt;n { 
+            // save the current state for row 
+            let temp = matrix[i][j]
+            // swap the diagnals by transposing [row][column] -&gt; [column][row]
+            matrix[i][j] = matrix[j][i]
+            // complete the swap by recording [column][row] with the original [row][column] 
+            matrix[j][i] = temp 
+        }
+        // this creates a swap across diagonals.. now to complete the rotation 
+        
+    }
+    for i in 0..&lt;n { 
+        matrix[i].reverse()
+    }
+}
+
+print("#6 \(myMatrix)")
+rotateMatrixInPlace3(&amp;myMatrix)
+print("#7 \(myMatrix)")
+rotateMatrixInPlace3(&amp;myMatrix)
+print("#8 \(myMatrix)")
+rotateMatrixInPlace3(&amp;myMatrix)
+print("#9 \(myMatrix)")
+rotateMatrixInPlace3(&amp;myMatrix)
+print("#10 \(myMatrix)")
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 2782}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

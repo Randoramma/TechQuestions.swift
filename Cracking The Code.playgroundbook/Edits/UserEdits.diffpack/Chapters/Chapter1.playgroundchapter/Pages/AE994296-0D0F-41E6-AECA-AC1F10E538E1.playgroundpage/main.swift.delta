@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>/**
+ 1.5 implement a method to perform basic strength compression using the counts of repeated characters. For example, the string AABCCCCCAAA would become A2B1C5A3. If the "compressed "string would not become smaller than the original thing, you should return the original strain you can assume the string has only upper and lower cases A-Z.?
+ */
+
+import Foundation 
+
+
+func compressString(input: String) -&gt; String { 
+    
+    var count = 1
+    var output: String = "" 
+    // evaluate for each character in the string if the next character is the same 
+    
+    // if it is, increment the count
+    
+    // if it is different, append the current character to the output followed by the current count
+    
+    // and reset the count 
+    
+    // after the for loop, return the 
+}
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 780}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
