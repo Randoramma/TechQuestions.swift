@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+var matrix: [[Int]] = [ 
+    [1,2,3],
+    [4,0,6],
+    [7,8,9]
+]
+
+
+func zeroMatrixRowAndColumn(matrix: inout [[Int]]) { 
+    var rowToZero:  Set&lt;Int&gt; = []
+    var columnToZero: Set&lt;Int&gt; = []
+    
+    for (i, row) in matrix.enumerated() { 
+        for (j, value) in row.enumerated() { 
+            if (value == 0) { 
+                rowToZero.insert(i)
+                columnToZero.insert(j)
+            }
+        }
+    }
+    
+    
+    for (i, row) in matrix.enumerated() { 
+        for (j, value) in row.enumerated() { 
+            if (rowToZero.contains(i) || columnToZero.contains(j)) { 
+                matrix[i][j] = 0
+            }
+        }
+    }
+}
+
+print("Before \(matrix)")
+zeroMatrixRowAndColumn(matrix: &amp;matrix)
+print ("After \(matrix)")
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 768}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
