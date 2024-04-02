@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+/*
+1.8 Is substring: 
+  
+Assume you have a method "is substring "which checks if one word is a sustring of another.
+ Given two strings, S1 and S2, write code to check if S2 is a rotation of S1 using only one call to 'isSubstring'.
+ 
+ eg. S1 = "waterbottle" and S2 = "erbottlewat"
+
+ Test would be that because the string characters are in the same order.. S1 must be a substring of S2+S2.  
+
+ "waterbottle" is a substring of "erbottlewat" + "erbottlewat"
+ */
+
+let s1 = "waterbottle"
+let s2 = "erbottlewat"
+
+
+func isRotation(string1: String, string2: String) -&gt; Bool {
+    
+    if (string1.count == string2.count &amp;&amp; !string1.isEmpty) { 
+        let s2Concatinated = string2 + string2
+        
+        return s2Concatinated.contains(string1)
+    }
+    
+    return false 
+    
+}
+
+print("\(s1) is a substring of \(s2) = \(isRotation(string1: s1, string2: s2))")
+
+let testCases = [
+    [ "S1" : "waterbottle", "S2" : "erbottlewat"],
+    ["S1": "a", "S2": "a"],
+          ["S1": "abcde", "S2": "abfgh" ],
+          ["S1": "abcde", "S2": "edcba" ],
+          ["S1": "abc", "S2": "defgh"],
+          ["S1": "", "S2": ""],
+          ["S1": "hello world", "S2": "world hello"],
+          ["S1": "aaaa", "S2": "aaaa"],
+          ["S1": "abab", "S2": "baba"],
+          ["S1": "hello, world!", "S2": "world! hello,"]
+      
+    ]
+
+for testCase in testCases { 
+    if let s1 = testCase["S1"], let s2 = testCase["S2"] { 
+            print("\(s1) is a test case of \(s2) = \(isRotation(string1: s1, string2: s2))")
+    }
+}
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 1528}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
