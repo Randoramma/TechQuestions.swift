@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+/*
+ Build a data structure for a generic type that with methods to add and remove elements.
+ 
+ Further questions to consider when making a custom collection: 
+ 
+1. What is the maximum size of the collection?
+Understanding the scale can help decide on the underlying data structure (array, linked list, etc.) and optimizations for memory usage and access speed.
+2. Will it store mixed types?
+While Swift is a statically typed language, it's possible to store mixed types by using generics with type constraints or by utilizing Any or protocol types. Knowing this requirement influences how you design the collection's type safety.
+3. What are the performance expectations for operations such as addition, removal, and search?
+This will affect the choice of the underlying data structure. For instance, arrays provide fast access but potentially slower insertions/removals compared to linked lists.
+4. Is the collection mutable, and how frequently will it change?
+ The answers can impact decisions on copy-on-write semantics, mutation methods, and thread safety.
+5. Will the collection be accessed from multiple threads?
+ If yes, consider thread safety and concurrency controls to prevent data races and ensure integrity.
+ What kind of elements will it store, and do they have size limitations or special requirements?
+ This might affect how you manage memory, especially for large or complex objects.
+6. How should the collection handle nil or optional values?
+ Decide if the collection should allow nil values or if it should have mechanisms to deal with optional unwrapping.
+7. Is order important in the collection?
+ This influences whether to use an ordered data structure like an array or a set, or an unordered structure like a hash table.
+8. Do elements need to be unique?
+ If uniqueness is a requirement, you might need to implement or use existing protocols to enforce this constraint.
+9. Will the collection need to conform to Swift's Collection protocol?
+ Conforming to Collection provides many benefits, including compatibility with Swift's standard algorithms and for-each loops, but it also requires implementing specific protocols and methods.
+10. Is serialization or deserialization of the collection required?
+ If the collection needs to be encoded or decoded, for example, to JSON, you’ll need to consider how to support this, potentially implementing protocols like Codable.
+11. Are there any specific memory management concerns?
+ Especially relevant for collections holding elements that might create retain cycles or for use in environments with tight memory constraints.
+12. What is the lifecycle of the collection?
+ Understanding the creation, usage, and destruction phases can help in managing resources efficiently, especially for collections with heavy initialization or deinitialization costs.
+ 
+ 
+ Testing: 
+ 
+ Normal Cases
+ Adding and Removing Standard Types: Test with standard data types like Int, String, and Double. Add several items, remove a few, and ensure the collection updates correctly.
+ Order Preservation: For collections where order matters, add items in a specific order and ensure that order is preserved after various operations.
+ Duplicates: If your collection allows duplicates, add multiple identical items and remove one to ensure only the correct item is removed.
+ 
+ Edge Cases
+ Empty Collection: Attempt to remove an item from an empty collection. This should safely return nil (if your remove method is designed to return the removed item) and not crash.
+ Non-Existent Item: Try to remove an item that does not exist in the collection. The method should return nil and the collection should remain unchanged.
+ Single Item: Add a single item to the collection and then remove it. This tests the collection's behavior when transitioning to and from an empty state.
+ All Identical Items: If your collection allows duplicates, fill it with identical items and then remove one item to ensure the correct item is removed and the rest remain.
+ Adding and Removing Complex Objects: Test with custom objects or structs, especially ones that implement Equatable if your collection relies on it for removal. This helps ensure that your collection correctly compares complex types.
+ Maximum Capacity: If there’s a theoretical or practical limit to the collection's size, try to add items beyond this limit to see how the collection behaves, noting whether it gracefully handles overflow or crashes.
+ 
+ Specific Data Types for Testing
+ Mixed Numeric Types: If your collection can handle mixed types (via Any or generics with protocols), test adding different numeric types together, like Int, Float, or UInt.
+ Empty Strings and Zero Values: Add items like empty strings ("") or zero (0) to test how the collection handles these potentially special values.
+ Nil or Optional Values: If your collection is designed to handle optionals, test adding nil as an element and ensure it behaves as expected.
+ Complex Nested Collections: Test with nested collections (e.g., arrays of arrays) to see how well your collection handles more complex data structures.
+ 
+ Performance Testing
+ Large Scale Additions and Removals: Add and remove a large number of items to/from the collection to test its performance. This is particularly important for collections that might be used in high-performance or resource-constrained environments.
+ */ 
+
+struct CustomCollection&lt;T&gt; { 
+    
+    var items = [T]() 
+
+    mutating func add(_ item: T) { 
+        items.append(item)
+    }
+
+    mutating func remove(item: T) -&gt; T? where T: Equatable { 
+        if let index = items.firstIndex(of: item) { 
+            return items[index]
+        } else { 
+            return nil 
+        }
+    }
+
+    func getElement(_ index: Int) -&gt; T? { 
+        guard (index &gt;= 0 &amp;&amp; index &lt; items.count) else { return nil }
+        return items[index]
+    }
+
+    func getAll() -&gt; [T] { 
+            return items
+    }
+}    
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 5934}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{0, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
