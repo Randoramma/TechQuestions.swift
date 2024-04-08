@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+struct DataObject: Decodable {
+    let data: String
+}
+
+struct Person: Decodable {
+    let key: String
+    let age: Int
+}
+
+
+let JSON = """
+{"data": "key=WERV, age=58,key=dfgdfg, age=58,key=dfgdg, age=58,key=dfg, age=58,key=dg, age=58,key=hjk, age=51,key=gghj, age=58,key=ghj, age=52,key=dfg, age=58,key=WEdgdRV, age=58,key=hjkh, age=58,key=WERhjkhjkV, age=58,key=WERghjgV, age=58"}
+
+"""
+
+func extractAndCatagorizePersons(_ data: String) -&gt; ([Person]) {
+    
+    let regexPattern = "key=([^,]+), age=(\\d+)"
+    var allPeople = [Person]()
+    var peopleOver50 = [Person]()
+    
+    do {
+        let regex = try NSRegularExpression(pattern: regexPattern)
+        let range = NSRange(data.startIndex..&lt;data.endIndex, in: data)
+        let matches: [NSTextCheckingResult] = regex.matches(in: data, options: [], range: range)
+        
+        for match in matches {
+            if match.numberOfRanges == 3,
+               let keyRange = Range(match.range(at: 1), in: data),
+               let ageRange = Range(match.range(at: 2), in: data) {
+                if let person = evaluateMatchForPersonsAge(input: data, 
+                                                           keyRange: keyRange,
+                                                           ageRange: ageRange,
+                                                           ageLimit: 50) {
+                    peopleOver50.append(person)
+                }
+            }
+        }
+    } catch {
+        print("Error \(error)")
+        return []
+    }
+    return (peopleOver50)
+}
+
+func evaluateMatchForPersonsAge (input: String, keyRange: Range&lt;String.Index&gt;, ageRange: Range&lt;String.Index&gt;, ageLimit: Int) -&gt; Person? {
+    let key = String(input[keyRange])
+    if let age: Int = Int(input[ageRange]) {
+        let person: Person = Person(key: key, age: age)
+        if age &gt; ageLimit {
+            return person
+        } else {
+            return nil
+        }
+    } else {
+        return nil
+    }
+}
+
+let peopleOver50 = extractAndCatagorizePersons(JSON)
+print("count = \(peopleOver50.count)")
+for person in peopleOver50 {
+    print("Name: \(person.key)")
+    print("Age: \(person.age)")
+}
+//print("Count of ages over 50: \(extractAndCatagorizePersons(JSON))")
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 2234}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
