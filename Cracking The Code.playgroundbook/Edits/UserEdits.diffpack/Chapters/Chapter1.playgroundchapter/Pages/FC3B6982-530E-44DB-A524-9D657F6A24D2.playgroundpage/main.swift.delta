@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>func MinWindowSubstring(_ strArr: [String]) -&gt; String {
+
+  let n: String = strArr[0]
+  let k: String = strArr[1]
+  var characterCountInK = [Character:Int]() 
+  k.forEach { characterCountInK[$0, default: 0] += 1 }
+  //print(characterCountInK)
+
+  var characterFoundInN = [Character: Int]() 
+  var start = 0, end = 0 
+  var substringCount = 0 
+  var smallestWindowLength = Int.max 
+  var smallestWindowString = ""
+
+    // find the smallest substring (count)  
+  while end &lt; n.count { 
+    let endPlaceholderIndex = n[n.index(n.startIndex, offsetBy: end)] // this is the value currently considered the "end" of the aray as we loop through n
+    // starting at the beginning when end = 0.. 
+    if let needThisCharacterAmount = characterCountInK[endPlaceholderIndex] { 
+      characterFoundInN[endPlaceholderIndex, default: 0] += 1
+      // if we need the character at location "endPlaceHolderIndex, and we dont have the full amount.. add the value to the substring Count"
+      if let characterCount = characterFoundInN[endPlaceholderIndex], characterCount &lt;= needThisCharacterAmount { 
+        substringCount += 1 
+      }
+    }
+
+    // find the smallest substring (string) 
+    while substringCount == k.count &amp;&amp; start &lt;= end { // while the count is the size of L and we are not at the end.. 
+      let currentWindowLength = end - start + 1 // capture the max length of the scrolling window (the +1 is because end is inclusive)
+      if currentWindowLength &lt; smallestWindowLength { 
+        smallestWindowLength = currentWindowLength // update the smallestWindowLength 
+        let startIndex = n.index(n.startIndex, offsetBy: start) // update the start  
+        let endIndex = n.index(n.startIndex, offsetBy: end) // update the end of the window 
+        smallestWindowString = String(n[startIndex...endIndex]) // update the current smallest substring based on iteration 
+      }
+      // resize the window smaller based on the updated substring size.  
+      let startCharacterinWindow = n[n.index(n.startIndex, offsetBy: start)] // as the window moves towards the end of N capture start character 
+      if let countForFoundCharacter = characterFoundInN[startCharacterinWindow], // is that character found in N? &lt;It has to be&gt;.. 
+      let needThisCharacterAmount = characterCountInK[startCharacterinWindow] { // capture the amount of this character needed in K 
+        if countForFoundCharacter == needThisCharacterAmount {  // if we exactly the number of characters "startCharacterInWindow" in the current window 
+          substringCount -= 1 // we reduce the size of the smallest version of the substring.. if it gets smaller than the window it wont be updated any longer. 
+        }
+        characterFoundInN[startCharacterinWindow] = countForFoundCharacter - 1 // tracking the characters found in N to update the future iterations 
+      }
+      start += 1 // move down the string inside this current loop.  
+    }
+    end += 1 // moce down the string 
+  }
+  return smallestWindowString
+}
+
+// Test the function with the provided example
+print(MinWindowSubstring(["ahffaksfajeeubsne", "jefaa"])) // aksfaje
+print(MinWindowSubstring(["aaffhkksemckelloe", "fhea"])) // affhkkse
+
+
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 3187}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

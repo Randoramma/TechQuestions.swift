@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+
+func FirstFactorial(_ num: Int) -&gt; Int {
+
+var sumTotal: Int = 1 
+  // code goes here   
+  // Note: feel free to modify the return type of this function 
+
+  // the function will store a var (int).. the function will for loop down to 1.. 
+
+  for index in 1...num {
+    if (index != 0) { 
+      sumTotal = sumTotal * index   
+    }
+     
+  }
+  return sumTotal
+}
+
+let total = FirstFactorial(4)
+print(total)
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 424}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
