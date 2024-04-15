@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+
+let helloworld = "Hello, world! 123 4567 a1b2c3."
+let dogs = "I love dogs"
+let funtime = "fun&amp;!! time"
+let emptyString = ""
+let tests: [String] = [helloworld, dogs, funtime, emptyString]
+
+let pattern = "[a-zA-Z0-9]+"
+
+// Based on the regex the time complexity for this function is likely O(m *n) where m is the length of the string, and n is the complexity / length of the regex.  Most of the rest of the algorthim is O(n) for looping through collections or O(1).  
+func LongestWord(_ sen: String, pattern: String) -&gt; String {
+    var stringArray: [String] = []
+    do { 
+        let regex = try NSRegularExpression(pattern: pattern)
+        let range = NSRange(sen.startIndex..., in: sen)
+        let matches: [NSTextCheckingResult] = regex.matches(in: sen, range: range)
+        
+        for match in matches { 
+            if let matchRange: Range = Range(match.range, in: sen) {
+                let word = String(sen[matchRange])
+                stringArray.append(word)
+            }
+        }
+        if let longestWord = stringArray.max(by : { $0.count &lt; $1.count }) { 
+            return longestWord 
+        }
+        
+    } catch { 
+        return ""
+    }
+
+    return ""
+}
+
+for item in tests { 
+   // print(LongestWord(item, pattern: pattern))
+}
+
+
+// Another approach is the following: Manual Parsing.. 
+// the following time complexity is O(n) but uses more Swift function types such as ".isLetter" 
+func longestWord(_ sen: String) -&gt; String { 
+    let characters = Array(sen)
+    var maxLength = 0
+    var longestWord = ""
+    var currentWord = "" 
+    
+    // loop through the character array 
+    for char in characters { 
+        if char.isLetter {
+            // for letters append that to the 'current Word' 
+            currentWord += String(char)
+           // print("new current word \(currentWord)")
+            // if its not a letter, and the current word isnt empty.. 
+        } else if  !currentWord.isEmpty {
+            // if the current word is the longest so far.. update the max length and longest words.. 
+            if currentWord.count &gt; maxLength { 
+                maxLength = currentWord.count
+                longestWord = currentWord
+              //  print("update longest word \(longestWord)")
+              //  print("update max length \(maxLength)")
+    // if we wanted to also include equal and take equal over greater than.. 
+//            } else if currentWord.count == maxLength {
+//                maxLength = currentWord.count
+//                longestWord = currentWord
+            }
+            // reset the current word 
+            currentWord = "" 
+           // print("reset current word")
+        }
+    }
+    if currentWord.count &gt; maxLength { 
+        longestWord = currentWord
+    }
+    return longestWord
+}
+for item in tests { 
+    print(longestWord(item))
+}
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 2839}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
