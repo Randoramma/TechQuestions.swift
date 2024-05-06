@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+// Write a function that reverses a string.
+//The input string is given as an array of characters.
+//Extra Space: 0(1) Time: 0(n)
+
+
+/**
+ This method of string reversal uses a String object, and directly changes the object in memory.  
+ 
+ Considerations: 
+ * String Storage: Swift’s String employs a copy-on-write optimization. It might also use different internal representations to store the characters efficiently depending on the content (e.g., ASCII vs. Unicode). This allows for more efficient use of memory and performance optimizations that are not available with simple arrays.
+ * Will use less memory than creating a seperate Array for the input. 
+ * Modifications to strings, such as appending or replacing, result in optimized operations that may not necessarily involve modifying the entire underlying storage, thanks to Swift’s optimizations.
+ * May handle index out of bounds issues poorly by directly calling String.Index 
+ * More difficult to read for those not aware of Strings APIs. 
+ * Using a String immediately communicates to anyone reading the code that the data is meant to be interpreted as text.
+ * Strings in Swift are designed to correctly and efficiently handle Unicode and complex characters (like emojis or combined character markers), which are represented as grapheme clusters. Directly manipulating strings ensures that these complex characters are handled appropriately, preserving text semantics and correctness.
+ ***** For example this function cannot handle the waveEmoji scenario below. *****
+ */
+func reverseString(_ input: inout String) { 
+    var start = input.startIndex
+    var end = input.index(before: input.endIndex) // if calling directly the endIndex, first loop will hit out of bounds
+
+    while start &lt; end { 
+        let startChar = input[start]
+        input.replaceSubrange(start...start, with: String(input[end]))
+        input.replaceSubrange(end...end, with: String(startChar))
+        start = input.index(after: start)
+        end = input.index(before: end)
+    }
+}
+
+
+var hello = "hello" // "olleh"
+var helloWorld = "Hello, World" // "dlroW ,olleH"
+var waveEmoji = "👋🌍 123 😊" // "😊 321 🌍👋"
+var punctuation = "abc!@# 321 *()" // ")(* 123 #@!cba"
+var empty = "" // ""
+//
+//reverseString(&amp;waveEmoji)
+//print(waveEmoji)
+
+var tests: [String] = [hello, helloWorld, punctuation, empty, waveEmoji]
+
+//for i in 0..&lt;tests.count {
+//    var temp = tests[i]
+//    reverseString(&amp;temp)
+//    tests[i] = temp
+//    print(tests[i])
+//}
+
+
+/**
+ The below function takes a string as an array of characters as the info, this could be considered slightly less efficient because you have to create a copy of your string that you were trying to reverse however, this will work in all situations. The below function takes a string as an array of characters as the input, this could be considered slightly less efficient because you create a copy of your string that you're trying to reverse however, this will work in all situations as noted above.
+ 
+ * Additionally, the above time complexity is greater, since it iterated over the entire length of the string, whereas in this function, you're only iterating over 1/2 of the characters in Array. However Big O would not necessarily not this as both are f(N).  
+ 
+ * I think for most iOS applications.. what would matter most for this usage is safety and accuracy.  This version does prevent all out of bounds errors and will work with all Character types including Unicode and ASCII, perhaps without the String optimizations.  
+ 
+ * Using an array of Character objects generally consumes more memory because each Character in Swift can hold a grapheme cluster, which is a series of one or more Unicode scalars that combine to form a single human-readable character. Arrays do not have the same level of optimization as String for typical text operations.
+ 
+* Modifying Character Arrays: Operations on arrays, such as inserting or removing characters, may involve shifting elements in the array, which can be less efficient than corresponding operations on a string.
+ 
+ * An array of Character suggests a more specialized or non-standard usage of the data where individual characters might need to be manipulated or analyzed separately.
+ 
+ */
+func reverseString(input: inout [Character]) { 
+    var index = 0 
+    let length = input.count
+    
+    // will not execute for strings of length "0" 
+    while index &lt; length / 2 { 
+        let tmp = input[index]
+        input[index] = input[length - index - 1]
+        input[length - index - 1] = tmp 
+        index += 1
+    }
+}
+
+for i in 0..&lt;tests.count { 
+    var temp: [Character] = Array(tests[i])
+    reverseString(input: &amp;temp) // must call this seperate from print as we are referencing a pointer here not the actual value.  
+    print(String(temp))
+}
+
+/**
+Continued notes: 
+
+ String: A String in Swift is a struct that represents a collection of characters. Swift’s String type is highly optimized for performance and flexibility, and it provides a comprehensive set of methods for string manipulation, such as concatenation, interpolation, and substring extraction.
+ [Character]: This is an array where each element is a Character type. This array type supports general array operations such as appending, inserting, and removing elements, but lacks the string-specific functionality.
+ 
+ 
+
+
+*/
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 5359}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

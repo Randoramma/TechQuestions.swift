@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+
+func QuestionsMarks(_ str: String) -&gt; String {
+
+var lastNumber: Int? = nil 
+var lastIndex: Int? = nil 
+var foundValidPair = false 
+// if string is less than 5 characters return false 
+if (str.count &lt; 5) { return "false" }
+
+// evaluate each character if its a number record it as lower value.  
+for (index, char) in str.enumerated() { 
+  if let currentNumber = char.wholeNumberValue { 
+    // when encountering a number, if there already is a lower value does that value plus this current value = 10? 
+    if let lastNumber = lastNumber, let lastIndex = lastIndex { 
+      if (lastNumber + currentNumber == 10) {
+        let questionMarkCount = str[str.index(str.startIndex, offsetBy:lastIndex + 1 )..&lt;str.index(str.startIndex, offsetBy: index)].filter { $0 == "?"}.count
+         if questionMarkCount == 3 { 
+           // if so return true
+           foundValidPair = true 
+         } else { 
+           return "false" 
+         }
+      } else { 
+        print("Did not equal 10")
+      }
+    } else { 
+        print("no recorded index")
+    }
+    // if there are not 3 question marks in the substring, update the last number and index with what was found.. 
+    lastNumber = currentNumber
+    lastIndex = index 
+    print("last")
+  }
+}
+// else return false.  
+return foundValidPair ? "true" : "false"
+
+// if so, are there 3 questions marks within the substring of those values? 
+}
+
+
+let query = "acc?7??sss?3rr1??????5"
+
+print(QuestionsMarks(query))
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 1473}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

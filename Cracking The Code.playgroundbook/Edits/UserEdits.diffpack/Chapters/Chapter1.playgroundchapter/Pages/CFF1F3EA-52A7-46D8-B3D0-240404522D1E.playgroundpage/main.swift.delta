@@ -59,7 +59,7 @@ func longestWord(_ sen: String) -&gt; String {
     
     // loop through the character array 
     for char in characters { 
-        if char.isLetter {
+        if char.isPunctuation {
             // for letters append that to the 'current Word' 
             currentWord += String(char)
            // print("new current word \(currentWord)")
@@ -91,7 +91,7 @@ for item in tests {
 }
 </string>
 			<key>ModifiedRange</key>
-			<string>{0, 2839}</string>
+			<string>{0, 2844}</string>
 			<key>OriginalContent</key>
 			<string>
 </string>
