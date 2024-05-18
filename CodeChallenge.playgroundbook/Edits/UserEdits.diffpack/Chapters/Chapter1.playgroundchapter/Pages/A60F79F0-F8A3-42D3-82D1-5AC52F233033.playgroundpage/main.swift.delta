@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+/*
+ If asked in a technical interview, could you write a function that lists the number of occurrences for each word in descending order? For the output, assume your solution makes use of a standard Swift Dictionary or Array of tuple values. Also assume your algorithm does not make use of any built-in Swift sorting functions.
+ */
+
+let input = "this is a test of the emergency broadcast system this is only a test dog dog dog"
+
+func tabulateValues(_ input: String) -&gt; [String: Int] { 
+    
+    
+    return [:]
+}
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 533}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

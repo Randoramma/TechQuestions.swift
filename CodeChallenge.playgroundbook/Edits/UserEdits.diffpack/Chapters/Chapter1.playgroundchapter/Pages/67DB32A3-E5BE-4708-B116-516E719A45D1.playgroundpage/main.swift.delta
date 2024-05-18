@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+/*
+ Find Common Element in Rows
+ Given a matrix where every row is sorted in increasing order, return the smallest common element in all rows. If there is no common element return -1
+ Input: mat = [[1,2,3,4,5,8], [2,4,5,8,10], [3,5,7,8,9,11], [1,3,5,7,8,9]]
+ Output: 5
+ 
+ */
+let  mat = [[1,2,3,4,5,8], [2,4,5,8,10], [3,5,7,8,9,11], [1,3,5,7,8,9]]
+let arrayOfArrays: [[Int]] = [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
+
+func smallestCommonElement(matrix: [[Int]]) -&gt; Int {
+    // Use reduce to find the intersection of all arrays
+    let commonIntegers: Set&lt;Int&gt; = matrix.reduce(Set(matrix.first ?? [])) { result,  nextArray in
+        return result.intersection(nextArray)
+    }
+    return commonIntegers.min() ?? -1 
+}
+
+ print(smallestCommonElement(matrix: mat))
+ 
+
+func sme(_ matrix: [[Int]]) -&gt; Int { 
+    
+    // find the shared set  using reduce on a Set created from the intersection of the common Ints within the matrix array.  
+    let commonIntegers: Set&lt;Int&gt; = matrix.reduce(Set(matrix.first ?? [])) { result, array in 
+        result.intersection(array)
+    }
+    // return the smallest from the set 
+    return commonIntegers.min() ?? -1 
+}
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 1165}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

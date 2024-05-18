@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+
+// Reduce 
+let numbers = [1, 2, 3, 4, 5]
+
+let sum = numbers.reduce(0) { (result, next) in
+    return result + next
+}
+
+print(sum) // Output: 15
+
+
+// Map 
+
+let series = ["a", "b", "c"]
+
+let updatedArray = series.map { "\($0) "}
+
+print(updatedArray)
+
+// Filter 
+
+let filterSeries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+let filteredSeries = filterSeries.filter { $0 % 2 == 0 }
+print(filteredSeries)
+
+let filterStringSeries = ["apple", "banana", "avacado", "cantelope", "peach"]
+
+let filteredStrings = filterStringSeries.filter { $0.hasPrefix("a")} 
+print(filteredStrings)
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 585}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

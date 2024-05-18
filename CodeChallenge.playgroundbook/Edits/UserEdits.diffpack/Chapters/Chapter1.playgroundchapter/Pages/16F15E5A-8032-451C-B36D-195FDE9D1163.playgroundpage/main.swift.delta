@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+typealias responseTuple = (Int, Int)
+/*
+ In a technical interview, you’ve have been given an array of numbers and you need to find a pair of numbers which are equal to the given target value. Numbers can be either positive, negative or both. Can you design an algorithm that works in O(n) — linear time or greater?
+ */
+ let sequence = [8, 10, 2, 9, 7, 5]
+// let results = pairValues(11) = //returns (9, 2)
+
+func pairValues(_ input: Int) -&gt; (Int, Int) { 
+    var tuple: responseTuple = (0,0)
+    // for each element subtract the element from the input.. if the other value exists in the collection, return those two elements in the tuple. 
+    let metPairValue = sequence.contains { firstNumber in 
+        let secondNumber = input - firstNumber
+        if sequence.contains(secondNumber) { 
+             tuple = (firstNumber, secondNumber)
+        }
+        return sequence.contains(secondNumber)
+    }
+    return tuple 
+}
+print(pairValues(11))
+print(pairValues(12))
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 986}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+/*
+ Given a matrix where every row is sorted in increasing order, return the smallest common element in all rows. If there is no common element return -1.
+ Input: mat = [[1,2,3,4,5,8], [2,4,5,8,10], [3,5,7,8,9,11], [1,3,5,7,8,9]]
+ Output: 5
+ */
+
+let mat = [[1,2,3,4,5,8], [1, 2,4,5,8,10], [1,3,5,5,7,8,9,11], [1,3,5,7,8,9]]
+
+func getSmallestCommonElement(_ matrix: [[Int]]) -&gt; Int { 
+    
+    /* todo: Get a collection of common elements (Set) 
+         1. get a collection of common elements using a Set
+         2. use reduce to remove all duplicates and sort through the collection 
+         3. intersect function of reduce to fine the common elements.. 
+     */
+    
+    let commonElements: Set&lt;Int&gt; = matrix.reduce(Set(matrix.first ?? [])) { result, array in 
+       return result.intersection(array)
+    }
+    
+    // find the smallest element in the collection and return.  
+    return commonElements.min() ?? -1 
+}
+
+print(getSmallestCommonElement(mat))
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 980}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

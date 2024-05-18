@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+/*
+ In a technical interview, you’ve been asked to design a class WordFilter that supports one function, WordFilter.f(String prefix, String suffix). It will return the word with given prefix and suffix. If no word exists, return -1.
+ 
+ WordFilter.(["apple"])
+ WordFilter.(["app"])
+ WordFilter.f("a", "e") // returns 0
+ WordFilter.f("b", "") // returns -1
+ 
+ */
+
+class WordFilter { 
+    
+    var storage: [String]
+    
+    init(_ words: [String]) { 
+        self.storage = words 
+    }
+    
+    func f(_ prefix: String, _ suffix: String) -&gt; Int { 
+        // for prefix.. if we find prefix in the storage.. and there are no other characters that preceed it.. 
+        guard matchFirstOccurance(self.storage[0], prefix) == 0 else { 
+            return -1 
+        }
+        
+        let reverseStorage: String = String(self.storage[0].reversed())
+        let suffixReversed: String = String(suffix.reversed())
+        
+                // for the suffix, you could perform the above it in reverse and reverse the suffix,  -&gt; bool 
+        guard matchFirstOccurance(reverseStorage, suffixReversed) == 0 else {
+            return -1 
+        }
+        
+        return 0 
+
+    }
+    
+    /**
+     The purpose of this function is to find the first occurance of the substring within the input.  
+     */
+    func matchFirstOccurance(_ input: String, _ substring: String)-&gt; Int {
+       if let range = input.range(of: substring) {
+            let start = input.distance(from: input.startIndex, to: range.lowerBound)
+            return start 
+        } else { 
+             return -1 
+        }
+    }
+}
+
+let wf = WordFilter(["apple"])
+
+print("\(wf.matchFirstOccurance("apple", "a"))")
+print("\(wf.matchFirstOccurance("apple", "e"))")
+print(wf.storage[0].count)
+print(wf.f("a", "e"))
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 1791}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

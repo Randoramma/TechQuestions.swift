@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>
+import Foundation
+
+/*
+ Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white and blue. Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively:
+ 
+ let sequence = [2,0,2,1,1,0] -&gt; [0, 0, 1, 1, 2, 2]
+ */
+
+let sequence = [2,0,2,1,1,0]
+
+func reorderRWB(input: [Int]) -&gt; [Int] {
+    
+    let orderedSequence = input.sorted { $0 &lt; $1 }
+    return orderedSequence 
+}
+
+print(reorderRWB(input: sequence))
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 552}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

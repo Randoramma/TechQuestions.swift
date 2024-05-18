@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation 
+
+/*
+Build a password verification algorithim.. the requrirements are: 
+1. Password must be 16 characters or longer
+2. Password must not contain the sequence "password" case insensitive
+3. Password must not contain 4 or more of any character in the string case sensitive
+4. Password must contain at least 1 lowercase and 1 uppercase character  
+5. Password must contain the special characters " $, *, #"
+ */
+
+let forbiddenCharacters: [String] = ["$", "*", "#"]
+let uppercase: [String] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+let lowercase: [String] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t","u", "v", "w", "x", "y","z"]
+func passwordIsValid(_ input: String) -&gt; [Int] {
+    var testsArray: [Int] = []
+    
+    if vaildatePasswordLength(input, length: 16) == false { 
+        testsArray.append(1)
+    }
+    if validateContainsSubstring(input, substring: "password", caseInsensitive: true) { 
+        testsArray.append(2)
+    }
+    if validateContainsRepeatedElements(input: input, limit: 4) {
+        testsArray.append(3)
+    }
+    if (validateContainsSubstringArray(input, array: uppercase) == false) || 
+    (validateContainsSubstringArray(input, array: lowercase) == false) {
+        testsArray.append(4)
+    }
+    if (validateContainsSubstringArray(input, array: forbiddenCharacters)) == false { 
+        testsArray.append(5)
+    }
+    return testsArray
+}
+
+func vaildatePasswordLength(_ input: String, length: Int) -&gt; Bool { 
+    if input.count &gt;= 16 { 
+        return true 
+    } else { 
+        return false
+    }
+}
+
+func validateContainsSubstring(_ input: String, substring: String, caseInsensitive: Bool) -&gt; Bool { 
+    if caseInsensitive { 
+        return input.lowercased().contains(substring)
+    } else { 
+        return input.contains(substring)
+    }
+}
+
+func validateContainsSubstringArray(_ input: String, array: [String]) -&gt; Bool { 
+   let result = false 
+    let charArray: [String] = input.map { String($0) }
+    let commonCharacters: [String] = charArray.reduce([]) { result, nextElement in 
+        return array.contains(nextElement) ? result + [nextElement] : result 
+    }
+    if commonCharacters.isEmpty { 
+        return false 
+    } else { 
+        return true 
+    }
+}
+
+func validateContainsRepeatedElements(input: String, limit: Int) -&gt; Bool { 
+    let charArray: [String] = input.map { String($0)}
+    
+    var elementCounts: [String: Int] = [:]
+    
+    for item in charArray { 
+        
+        var substring: String = ""
+        for _ in 0..&lt;limit {
+            substring.append(item)
+        }
+        if input.contains(substring) { 
+            return true 
+        }
+    }
+    return false 
+}
+
+let str1 = "pword"
+let str2 = "mypassword"
+let str3 = "thePassWord"
+let str4 = "myrrrrPasswordIsGr*at"
+let str5 = "theisisagreatevent**record"
+
+print(passwordIsValid(str4))
+print(passwordIsValid(str5))
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 3000}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

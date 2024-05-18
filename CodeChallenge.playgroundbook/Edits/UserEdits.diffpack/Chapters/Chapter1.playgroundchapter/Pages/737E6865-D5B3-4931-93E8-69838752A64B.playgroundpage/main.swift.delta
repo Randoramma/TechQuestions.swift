@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+/**
+ Given a string s, find the length of the longest 
+ substring
+  without repeating characters.
+ Example 1:
+
+ Input: s = "abcabcbb"
+ Output: 3
+ Explanation: The answer is "abc", with the length of 3.
+ Example 2:
+
+ Input: s = "bbbbb"
+ Output: 1
+ Explanation: The answer is "b", with the length of 1.
+ Example 3:
+
+ Input: s = "pwwkew"
+ Output: 3
+ Explanation: The answer is "wke", with the length of 3.
+ Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+  
+
+ Constraints:
+
+ 0 &lt;= s.length &lt;= 5 * 104
+ s consists of English letters, digits, symbols and spaces.
+ */
+
+class Solution {
+    static func lengthOfLongestSubstring(_ s: String) -&gt; Int {
+        
+        var characterDictionary: [Character: Int] = [:]
+        let stringArray: [Character] = Array(s)
+        var maxLength: Int = 0 
+        var startIndex: Int = 0 
+        for (i, item) in stringArray.enumerated() { 
+            if let storedValue = characterDictionary[item], storedValue &gt;= startIndex { 
+                startIndex = storedValue + 1
+            }
+            characterDictionary[item] = i
+            maxLength = max(maxLength, i - startIndex + 1)
+        }
+        return maxLength
+    }
+}
+
+
+//                        print(characterDictionary)
+//                        print("Start Index = \(startIndex)")
+//                        print("Max Length = \(maxLength)")
+//                        print("i = \(i)")
+let dvdf = "dvdf" // = 3
+let pwwkew = "pwwkew" // = 3
+let abcabcbb = "abcabcbb" // = 3 
+let bbbbb = "bbbbb" // = 1 
+let abba = "abba" // 2 
+
+
+let tests : [String] = [dvdf, pwwkew, abcabcbb, bbbbb, abba]
+
+for item in tests { 
+    print(Solution.lengthOfLongestSubstring(item))
+}
+
+//print(Solution.lengthOfLongestSubstring(abba))
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 1775}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+/*
+You’ve been asked by your manager to build a new algorithm to reverse vowels in any proposed String. How would you build such a model, assuming you aren’t allowed to use any native String reverse() functions in your code?
+e.g. Hello = Holle
+e.g. BinarySearch = BanerySairch
+ */
+
+let bs = "BinarySearch"
+func reverseVowels(_ input: String) -&gt; String { 
+    
+    // parse algorithm into an array 
+    // create an array of vowels 
+    // reloop over the array of characters and insert the last element from the array of vowels 
+    
+    let vowels: [String] = ["a", "A", "e", "E", "i", "I", "o", "O", "u", "U"]
+    var vowelArray: [String] = []
+    let charArray: [String] = input.map { String($0)}
+    print(charArray)
+    let _ = charArray.contains { element in 
+        if vowels.contains(element) { 
+            vowelArray.append(element)
+        }
+        return false 
+    }
+    let response = insert(collectedVowels: vowelArray, charArray)
+    return response
+}
+
+func insert(collectedVowels: [String], _ input: [String])-&gt; String { 
+    var response: String = "" 
+    var cVowels = collectedVowels
+    let vowels: [String] = ["a", "A", "e", "E", "i", "I", "o", "O", "u", "U"]
+    for (index, _ ) in input.enumerated() { 
+        if vowels.contains(input[index]) { 
+            response.append(cVowels.last ?? "")
+            cVowels.removeLast()
+        } else { 
+            response.append(input[index])
+        }
+    }
+        
+return response
+}
+print(reverseVowels(bs))
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 1500}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
